@@ -105,12 +105,13 @@ object SparkWordProcess {
             println("Data transfer - word: " + word + ", num: " + num)
 
             val cal: Calendar = Calendar.getInstance()
-            val sdf: SimpleDateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss.SSSZ")
+            val sdf: SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             val epoch = cal.getTimeInMillis
 
             val data = """{"@timestamp":"""" + sdf.format(cal.getTime) + """","word":"""" + word + """","number":"""" + num + """"}"""
+//            val data = """{"word":"""" + word + """","number":"""" + num + """"}"""
 
-            val result = Http.postData("http://bigtb04:9200/first/slrwords4/", data)
+            val result = Http.postData("http://bigtb04:9200/issuewords/slrfree/", data)
               .header("Content-Type", "application/json")
               .header("Charset", "UTF-8")
               .option(HttpOptions.readTimeout(10000))
@@ -175,12 +176,12 @@ object SparkWordProcess {
             println("Data transfer - word: " + word + ", num: " + num)
 
             val cal: Calendar = Calendar.getInstance()
-            val sdf: SimpleDateFormat = new SimpleDateFormat("yyyyMMdd'T'HHmmss.SSSZ")
+            val sdf: SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
             val epoch = cal.getTimeInMillis
 
             val data = """{"@timestamp":"""" + sdf.format(cal.getTime) + """","word":"""" + word + """","number":"""" + num + """"}"""
 
-            val result = Http.postData("http://bigtb04:9200/first/slrwords4/", data)
+            val result = Http.postData("http://bigtb04:9200/issuewords/slrfree/", data)
               .header("Content-Type", "application/json")
               .header("Charset", "UTF-8")
               .option(HttpOptions.readTimeout(10000))
